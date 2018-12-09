@@ -1,23 +1,23 @@
 [user]
-  name = maejimayuto
+  name  = maejimayuto
   email = maejimayuto@gmail.com
 [core]
   excludesfile = /Users/yuto.maejima/.gitignore_global
-  quotepath = false
-  editor = vim
+  quotepath    = false
+  editor       = vim
   attributesfile = /Users/yuto.maejima/.gitattributes_global
 [difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path =
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
 [mergetool "sourcetree"]
-  cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 [commit]
   template = /Users/yuto.maejima/.stCommitMsg
 [filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
+  clean    = git-lfs clean -- %f
+  smudge   = git-lfs smudge -- %f
+  process  = git-lfs filter-process
   required = true
 [pager]
   log = diff-highlight | less
@@ -26,12 +26,13 @@
 [interactive]
   diffFilter = diff-highlight
 [alias]
-  lo = log --oneline --graph --decorate --branches --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  lo  = log --oneline --graph --decorate --branches --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
   dif = diff --word-diff --ignore-space-change
-  ck = checkout
-  s = status --short --branch
-  co = commit
-  a = add -A
+  ck  = checkout
+  co  = commit
+  a   = add -A
+  s   = status --short --branch
+  p   = pull
 [credential]
   helper = cache
 [url "github:"]
