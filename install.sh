@@ -20,15 +20,23 @@ done
 
 echo "linked dotfiles complete!"
 
-#
-# ln -snfv /Users/yuto.maejima/dotfiles/.gitattributes_global /Users/yuto.maejima/.gitattributes_global
-# ln -snfv /Users/yuto.maejima/dotfiles/.gitconfig /Users/yuto.maejima/.gitconfig
-# ln -snfv /Users/yuto.maejima/dotfiles/.gitignore_global /Users/yuto.maejima/.gitignore_global
-# ln -snfv /Users/yuto.maejima/dotfiles/.tmux.conf /Users/yuto.maejima/.tmux.conf
-# ln -snfv /Users/yuto.maejima/dotfiles/.zshrc /Users/yuto.maejima/.zshrc
-#
-# unlink .gitattributes_global
-# unlink .gitconfig
-# unlink .gitignore_global
-# unlink .tmux.conf
-# unlink .zshrc
+
+#######################################
+# シンボリックリンクの作成
+#######################################
+
+# ln -snfv ~/work/settings/dotfiles/.gitattributes_global /Users/yuto.maejima/.gitattributes_global
+# ln -snfv ~/work/settings/dotfiles/.gitconfig /Users/yuto.maejima/.gitconfig
+# ln -snfv ~/work/settings/dotfiles/.gitignore_global /Users/yuto.maejima/.gitignore_global
+# ln -snfv ~/work/settings/dotfiles/.tmux.conf /Users/yuto.maejima/.tmux.conf
+# ln -snfv ~/work/settings/dotfiles/.zshrc /Users/yuto.maejima/.zshrc
+
+#######################################
+# シンボリックリンクの削除
+#######################################
+
+# unlink ~/.gitattributes_global
+# unlink ~/.gitconfig
+# unlink ~/.gitignore_global
+# unlink ~/.tmux.conf
+# unlink ~/.zshrc

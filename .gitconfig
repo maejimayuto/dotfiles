@@ -2,16 +2,16 @@
   name  = maejimayuto
   email = maejimayuto@gmail.com
 [core]
+  attributesfile = /Users/yuto.maejima/.gitattributes_global
   excludesfile = /Users/yuto.maejima/.gitignore_global
   quotepath    = false
   editor       = vim
-  attributesfile = /Users/yuto.maejima/.gitattributes_global
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
 [mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
 [commit]
   template = /Users/yuto.maejima/.stCommitMsg
 [filter "lfs"]
@@ -26,13 +26,17 @@
 [interactive]
   diffFilter = diff-highlight
 [alias]
-  lo  = log --oneline --graph --decorate --branches --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-  dif = diff --word-diff --ignore-space-change
+  a   = add
+  aa  = add -A
+  br  = branch
+  brv = branch --vv
   ck  = checkout
   co  = commit
-  a   = add -A
-  s   = status --short --branch
+  d   = diff
+  dif = diff --word-diff --ignore-space-change --ignore-blank-lines
   p   = pull
+  lo  = log --oneline --graph --decorate --branches --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  s   = status --short --branch
 [credential]
   helper = cache
 [url "github:"]
@@ -40,3 +44,6 @@
   InsteadOf = git@github.com:
 [color]
   ui = auto
+[diff]
+  compactionHeuristic = true
+  renames = true
