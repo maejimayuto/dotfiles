@@ -29,7 +29,7 @@
   a   = add
   aa  = add -A
   br  = branch
-  brv = branch --vv
+  brv = branch -vv
   ck  = checkout
   co  = commit
   d   = diff
