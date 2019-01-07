@@ -34,6 +34,7 @@
   ck  = checkout
   co  = commit
   d   = diff
+  ds  = diff --staged
   dif = diff --word-diff --ignore-space-change --ignore-blank-lines
   p   = pull
   lo  = log --oneline --graph --decorate --branches --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
