@@ -31,14 +31,19 @@
   ap  = add -p
   br  = branch
   brv = branch -vv
-  ck  = checkout
-  co  = commit
+  co  = checkout
+  cl  = clean
+  cm  = commit
   d   = diff
   ds  = diff --staged
   dif = diff --word-diff --ignore-space-change --ignore-blank-lines
   p   = pull
   lo  = log --oneline --graph --decorate --branches --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  lop = log --oneline --graph --decorate --branches --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  logp= log -p
   s   = status --short --branch
+  st  = status
+  ss  = stash
 [credential]
   helper = cache
 [url "github:"]
