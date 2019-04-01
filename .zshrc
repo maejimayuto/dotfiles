@@ -401,3 +401,8 @@ export EDITOR="vim"
 
 # github command
 function git(){hub "$@"}
+
+# pyenv
+export PYENV_ROOT="${HOME}/.pyenv"
+export PATH="${PYENV_ROOT}/bin:$PATH"
+eval "$(pyenv init -)"
