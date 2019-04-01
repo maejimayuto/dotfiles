@@ -18,6 +18,8 @@ brew "graphviz"
 brew "hub"
 brew "imagemagick@6", link: true
 brew "nodebrew"
+brew "pyenv"
+brew "ruby-build"
 brew "rbenv"
 brew "rmtrash"
 brew "terraform"
