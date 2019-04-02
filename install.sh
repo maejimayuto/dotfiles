@@ -26,6 +26,7 @@ echo "linked dotfiles complete!"
 # ln -snfv ~/work/settings/dotfiles/.gitignore_global /Users/yuto.maejima/.gitignore_global
 # ln -snfv ~/work/settings/dotfiles/.tmux.conf /Users/yuto.maejima/.tmux.conf
 # ln -snfv ~/work/settings/dotfiles/.zshrc /Users/yuto.maejima/.zshrc
+# ln -snfv ~/work/settings/dotfiles/.Brewfile /Users/yuto.maejima/Brewfile
 
 #######################################
 # シンボリックリンクの削除
@@ -36,3 +37,4 @@ echo "linked dotfiles complete!"
 # unlink ~/.gitignore_global
 # unlink ~/.tmux.conf
 # unlink ~/.zshrc
+# unlink ~/Brewfile
