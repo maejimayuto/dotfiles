@@ -49,8 +49,41 @@ RPROMPT="%*"
 #   ;;
 # esac
 
+########################################
+# vcs_info
+# -- 右プロンプトにgitのブランチ情報を表示
+# autoload -Uz vcs_info
+# autoload -Uz add-zsh-hook
+
+# zstyle ':vcs_info:*' formats '%F{green}(%s)-[%b]%f'
+# zstyle ':vcs_info:*' actionformats '%F{red}(%s)-[%b|%a]%f'
+
+# function _update_vcs_info_msg() {
+#     LANG=en_US.UTF-8 vcs_info
+#     RPROMPT="${vcs_info_msg_0_}"
+# }
+# add-zsh-hook precmd _update_vcs_info_msg
+
 autoload -U promptinit; promptinit
 prompt pure
+
+# https://github.com/b-ryan/powerline-shell
+# function powerline_precmd() {
+#     PS1="$(powerline-shell --shell zsh $?)"
+# }
+
+# function install_powerline_precmd() {
+#   for s in "${precmd_functions[@]}"; do
+#     if [ "$s" = "powerline_precmd" ]; then
+#       return
+#     fi
+#   done
+#   precmd_functions+=(powerline_precmd)
+# }
+
+# if [ "$TERM" != "linux" ]; then
+#     install_powerline_precmd
+# fi
 
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style
@@ -94,20 +127,6 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd
 # 書式設定（何の？）
 zstyle ':completion:*:descriptions' format '%BCompleting%b %U%d%u'
 
-########################################
-# vcs_info
-# -- 右プロンプトにgitのブランチ情報を表示
-# autoload -Uz vcs_info
-# autoload -Uz add-zsh-hook
-
-# zstyle ':vcs_info:*' formats '%F{green}(%s)-[%b]%f'
-# zstyle ':vcs_info:*' actionformats '%F{red}(%s)-[%b|%a]%f'
-
-# function _update_vcs_info_msg() {
-#     LANG=en_US.UTF-8 vcs_info
-#     RPROMPT="${vcs_info_msg_0_}"
-# }
-# add-zsh-hook precmd _update_vcs_info_msg
 
 
 ########################################
