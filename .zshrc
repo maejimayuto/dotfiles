@@ -385,6 +385,10 @@ PATH=${JAVA_HOME}/bin:${PATH}
 
 # Git
 export PATH="/usr/local/Cellar/git/2.5.0/bin:$PATH"
+# $ git diff
+# diff-highlight | less: diff-highlight: command not found
+# で怒られるので下記を実行する
+# sudo ln -s /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin/diff-highlight
 
 # Laravel
 export PATH="$HOME/.composer/vendor/bin:$PATH"
@@ -398,9 +402,6 @@ export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
 export PATH=$HOME/Library/Android/sdk/tools:$PATH
 
 export EDITOR="vim"
-
-# github command
-function git(){hub "$@"}
 
 # pyenv
 export PYENV_ROOT="${HOME}/.pyenv"
