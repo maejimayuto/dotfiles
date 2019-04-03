@@ -141,7 +141,8 @@ module.exports = {
     "hyper-search",
     "hypercwd",
     "hyper-solarized-dark-highcontrast",
-    "hyperlinks"
+    "hyperlinks",
+    "hyper-pane"
   ],
 
   // in development, you can create a directory under
