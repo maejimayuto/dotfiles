@@ -21,12 +21,13 @@ echo "linked dotfiles complete!"
 # シンボリックリンクの作成
 #######################################
 
-# ln -snfv ~/work/settings/dotfiles/.gitattributes_global /Users/yuto.maejima/.gitattributes_global
-# ln -snfv ~/work/settings/dotfiles/.gitconfig /Users/yuto.maejima/.gitconfig
-# ln -snfv ~/work/settings/dotfiles/.gitignore_global /Users/yuto.maejima/.gitignore_global
-# ln -snfv ~/work/settings/dotfiles/.tmux.conf /Users/yuto.maejima/.tmux.conf
-# ln -snfv ~/work/settings/dotfiles/.zshrc /Users/yuto.maejima/.zshrc
-# ln -snfv ~/work/settings/dotfiles/.Brewfile /Users/yuto.maejima/Brewfile
+# ln -snfv ~/work/settings/dotfiles/.gitattributes_global /Users/maejimayuto/.gitattributes_global
+# ln -snfv ~/work/settings/dotfiles/.gitconfig /Users/maejimayuto/.gitconfig
+# ln -snfv ~/work/settings/dotfiles/.gitignore_global /Users/maejimayuto/.gitignore_global
+# ln -snfv ~/work/settings/dotfiles/.tmux.conf /Users/maejimayuto/.tmux.conf
+# ln -snfv ~/work/settings/dotfiles/.zshrc /Users/maejimayuto/.zshrc
+# ln -snfv ~/work/settings/dotfiles/.Brewfile /Users/maejimayuto/Brewfile
+# ln -snfv ~/work/settings/dotfiles/.hyper.js /Users/maejimayuto/.hyper.js
 
 #######################################
 # シンボリックリンクの削除
@@ -38,3 +39,4 @@ echo "linked dotfiles complete!"
 # unlink ~/.tmux.conf
 # unlink ~/.zshrc
 # unlink ~/Brewfile
+# unlink ~/.hyper.js
