@@ -129,6 +129,9 @@ module.exports = {
     // bellSoundURL: 'http://example.com/bell.mp3',
 
     // for advanced config flags please refer to https://hyper.is/#cfg
+
+    // The number of rows to be persisted in terminal buffer for scrolling
+    scrollback: 10000000,
   },
 
   // a list of plugins to fetch and install from npm

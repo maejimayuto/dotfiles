@@ -417,8 +417,15 @@ export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="/usr/local/mysql/bin:$PATH"
 
 # Androis Studio
-export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
-export PATH=$HOME/Library/Android/sdk/tools:$PATH
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+# avdmanager, sdkmanager
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
+# adb, logcat
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+# emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+# export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
+# export PATH=$HOME/Library/Android/sdk/tools:$PATH
 
 export EDITOR="vim"
 
