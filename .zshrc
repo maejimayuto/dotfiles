@@ -424,8 +424,7 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 # emulator
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
-# export PATH=$HOME/Library/Android/sdk/platform-tools:$PATH
-# export PATH=$HOME/Library/Android/sdk/tools:$PATH
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools
 
 export EDITOR="vim"
 
