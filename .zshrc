@@ -432,3 +432,13 @@ export EDITOR="vim"
 export PYENV_ROOT="${HOME}/.pyenv"
 export PATH="${PYENV_ROOT}/bin:$PATH"
 eval "$(pyenv init -)"
+
+# postgres
+export PGDATA='/usr/local/var/postgres'
+
+# nodenv
+export PATH="$HOME/.nodenv/bin:$PATH"
+export PATH="$HOME/.nodenv/shims:$PATH"
+
+# npm
+export PATH=$PATH:`npm bin -g`
