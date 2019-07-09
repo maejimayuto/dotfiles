@@ -12,8 +12,6 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
-[commit]
-  template = /Users/yuto.maejima/.stCommitMsg
 [filter "lfs"]
   clean    = git-lfs clean -- %f
   smudge   = git-lfs smudge -- %f
@@ -33,6 +31,7 @@
   a   = add
   aa  = add -A
   ap  = add -p
+  ai  = add -i
   br  = branch
   brv = branch -vv
   co  = checkout
@@ -42,9 +41,10 @@
   ds  = diff --staged
   dif = diff --word-diff --ignore-space-change --ignore-blank-lines
   p   = pull
-  lo  = log --oneline --graph --decorate --branches --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-  lop = log --oneline --graph --decorate --branches --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  lo  = log --oneline --graph --decorate --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  lop = log -p --oneline --graph --decorate --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
   logp= log -p
+  rmv = remote -v
   s   = status --short --branch
   st  = status
   ss  = stash
