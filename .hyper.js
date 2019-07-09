@@ -141,11 +141,14 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-    "hyper-search",
     "hypercwd",
     "hyper-solarized-dark-highcontrast",
     "hyperlinks",
-    "hyper-pane"
+    "hyper-pane",
+    "hyperpower",
+    "hyper-highlight-active-pane",
+    "hyper-letters",
+    "hyper-active-tab"
   ],
 
   // in development, you can create a directory under
