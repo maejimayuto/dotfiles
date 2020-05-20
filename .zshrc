@@ -276,7 +276,7 @@ alias sour='open -a Sourcetree'
 # mvに確認オプションの必須化
 alias mv='mv -i'
 # rmをゴミ箱を経由するコマンドに変更
-alias rm='rmtrash'
+# alias rm='rmtrash'
 # cpに確認オプションの必須化
 alias cp='cp -i'
 # .zshrcを読み込む
@@ -295,6 +295,7 @@ alias sudo='sudo '
 alias grep='grep --color'
 alias dcom='docker-compose'
 alias dk='docker'
+alias gcl="git fetch --prune; git br --merged master | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d % ; git br --merged develop | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d % ;git sync ; git br -vv"
 # 上のディレクトリへの移動を楽に
 alias ...='../../'
 alias ....='../../../'
@@ -302,6 +303,24 @@ alias .....='../../../../'
 # グローバルエイリアス
 alias -g L='| less'
 alias -g G='| grep'
+alias -g AL='; say finish'
+# alias -g AL='; tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel'
+
+# Linux へのコピペ用
+# alias ls='ls --color=auto -F'
+# alias la='ls --color=auto -Fa'
+# alias ll='ls --color=auto -Flh'
+# alias lla='ls --color=auto -Falh'
+# alias ..='cd ../'
+# alias ...='cd ../../'
+# alias ....='cd ../../../'
+# alias .....='cd ../../../../'
+# alias dcom='docker-compose'
+# alias dk='docker'
+# eval `ssh-agent`
+# export LANGUAGE=en_US.UTF-8
+# export LANG=en_US.UTF-8
+# export LC_ALL=en_US.UTF-8
 
 # GitHub command https://github.com/github/hub
 function git(){hub "$@"} # zsh
@@ -399,8 +418,10 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH=~/work/projects/archi_team/fabric-samples/bin:$PATH
 
 # Java
-export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.8"`
-PATH=${JAVA_HOME}/bin:${PATH}
+# export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.8"`
+# PATH=${JAVA_HOME}/bin:${PATH}
+# https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/macos-install.html
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
 
 # Git
 export PATH="/usr/local/Cellar/git/2.5.0/bin:$PATH"
@@ -418,6 +439,7 @@ export PATH="/usr/local/mysql/bin:$PATH"
 
 # Androis Studio
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export ANDROID_HOME=$HOME/Library/Android/sdk
 # avdmanager, sdkmanager
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
 # adb, logcat
@@ -442,3 +464,21 @@ export PATH="$HOME/.nodenv/shims:$PATH"
 
 # npm
 export PATH=$PATH:`npm bin -g`
+
+# gcloud
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+
+# flutter
+export PATH="$PATH:$HOME/work/settings/flutter/bin"
+
+# pip https://qiita.com/tom-u/items/134e2b8d4e11feea8e12
+export PATH="$HOME/Library/Python/2.7/bin:$PATH"
+
+# ntfy https://qiita.com/HikoMSP/items/8977c12e44dba78f4a39
+# eval "$(ntfy shell-integration)"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# maven brew で入れ直した
+# export PATH="$HOME/work/settings/maven/apache-maven-3.6.3/bin:$PATH"
