@@ -6,6 +6,7 @@
 	excludesfile = /Users/maejimayuto/.gitignore_global
   quotepath    = false
   editor       = vim
+	ignorecase = false
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -35,6 +36,8 @@
   br  = branch
   brv = branch -vv
   co  = checkout
+  cod = !git checkout develop && git pull
+  com = !git checkout master && git pull
   cl  = clean
   cm  = commit
   d   = diff
@@ -44,6 +47,8 @@
   lo  = log --oneline --graph --decorate --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
   lop = log -p --oneline --graph --decorate --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
   logp= log -p
+  mgd = !git fetch && git merge origin/develop
+  mgm = !git fetch && git merge origin/master
   rmv = remote -v
   s   = status --short --branch
   st  = status
@@ -58,3 +63,48 @@
 [diff]
   compactionHeuristic = true
   renames = true
+
+# For linux
+# [user]
+#   name  = maejimayuto
+#   email = maejimayuto@gmail.com
+# [core]
+#   quotepath    = false
+#   editor       = vim
+# [pager]
+#   log = diff-highlight | less
+#   show = diff-highlight | less
+#   diff = diff-highlight | less
+# [interactive]
+#   diffFilter = diff-highlight
+# [alias]
+#   a   = add
+#   aa  = add -A
+#   ap  = add -p
+#   ai  = add -i
+#   br  = branch
+#   brv = branch -vv
+#   co  = checkout
+#   cl  = clean
+#   cm  = commit
+#   d   = diff
+#   ds  = diff --staged
+#   dif = diff --word-diff --ignore-space-change --ignore-blank-lines
+#   p   = pull
+#   lo  = log --oneline --graph --decorate --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+#   lop = log -p --oneline --graph --decorate --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+#   logp= log -p
+#   rmv = remote -v
+#   s   = status --short --branch
+#   st  = status
+#   ss  = stash
+# [credential]
+#   helper = cache
+# [url "github:"]
+#   InsteadOf = https://github.com/
+#   InsteadOf = git@github.com:
+# [color]
+#   ui = auto
+# [diff]
+#   compactionHeuristic = true
+#   renames = true
