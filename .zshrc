@@ -1,89 +1,16 @@
-# Created by newuser for 5.3.1
-
-
-# 少し凝った zshrc
-# License : MIT
-# http://mollifier.mit-license.org/
-
-########################################
-# 環境変数
 export LANG=ja_JP.UTF-8
 
-# 色を使用出来るようにする
 autoload -Uz colors
 colors
 
-# emacs 風キーバインドにする
 bindkey -e
 
-# ヒストリの設定
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 
-# プロンプト
-# 1行表示
-# PROMPT="%{$fg[blue]%}[%c]%{$reset_color%} %{$fg[yellow]%}$%{$reset_color%} "
-RPROMPT="%*"
-
-# 2行表示
-# PROMPT="%{${fg[green]}%}[%n@%m]%{${reset_color}%} %~
-# %# "
-
-# set prompt
-#
-# case ${UID} in
-# 0)
-#   PROMPT="%B%{${fg[red]}%}%/#%{${reset_color}%}%b "
-#   PROMPT2="%B%{${fg[red]}%}%_#%{${reset_color}%}%b "
-#   SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-#   [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-#     PROMPT="%{${fg[white]}%}${HOST%%.*} ${PROMPT}"
-#   ;;
-# *)
-#   PROMPT="%{${fg[red]}%}%/%%%{${reset_color}%} "
-#   PROMPT2="%{${fg[red]}%}%_%%%{${reset_color}%} "
-#   SPROMPT="%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
-#   [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-#     PROMPT="%{${fg[white]}%}${HOST%%.*} ${PROMPT}"
-#   ;;
-# esac
-
-########################################
-# vcs_info
-# -- 右プロンプトにgitのブランチ情報を表示
-# autoload -Uz vcs_info
-# autoload -Uz add-zsh-hook
-
-# zstyle ':vcs_info:*' formats '%F{green}(%s)-[%b]%f'
-# zstyle ':vcs_info:*' actionformats '%F{red}(%s)-[%b|%a]%f'
-
-# function _update_vcs_info_msg() {
-#     LANG=en_US.UTF-8 vcs_info
-#     RPROMPT="${vcs_info_msg_0_}"
-# }
-# add-zsh-hook precmd _update_vcs_info_msg
-
 autoload -U promptinit; promptinit
 prompt pure
-
-# https://github.com/b-ryan/powerline-shell
-# function powerline_precmd() {
-#     PS1="$(powerline-shell --shell zsh $?)"
-# }
-
-# function install_powerline_precmd() {
-#   for s in "${precmd_functions[@]}"; do
-#     if [ "$s" = "powerline_precmd" ]; then
-#       return
-#     fi
-#   done
-#   precmd_functions+=(powerline_precmd)
-# }
-
-# if [ "$TERM" != "linux" ]; then
-#     install_powerline_precmd
-# fi
 
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style
@@ -93,20 +20,13 @@ select-word-style default
 zstyle ':zle:*' word-chars " /=;@:{},|"
 zstyle ':zle:*' word-style unspecified
 
-########################################
-#for zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
-# 補間
-# 補間機能を有効にする
+
 autoload -Uz compinit
 compinit -u
 
 # 補間で小文字でも大文字にマッチさせる
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-# 先方予測機能 慣れないため 中止
-# autoload predict-on
-# predict-on
 
 # ../ の後は今いるディレクトリを補間しない
 zstyle ':completion:*' ignore-parents parent pwd ..
@@ -127,48 +47,22 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd
 # 書式設定（何の？）
 zstyle ':completion:*:descriptions' format '%BCompleting%b %U%d%u'
 
-
-
-########################################
-# オプション
-# 日本語ファイル名を表示可能にする
 setopt print_eight_bit
-
-# beep を無効にする
 setopt no_beep
-
-# フローコントロールを無効にする
 setopt no_flow_control
-
-# Ctrl+Dでzshを終了しない
 setopt ignore_eof
-
-# '#' 以降をコメントとして扱う
 setopt interactive_comments
-
-# ディレクトリ名だけでcdする
 setopt auto_cd
-
-# cd したら自動的にpushdする
 setopt auto_pushd
-
-# 重複したディレクトリを追加しない
 setopt pushd_ignore_dups
-
-# 同時に起動したzshの間でヒストリを共有する
 setopt share_history
-
-# 同じコマンドをヒストリに残さない
 setopt hist_ignore_all_dups
-
-# スペースから始まるコマンド行はヒストリに残さない
 setopt hist_ignore_space
-
-# ヒストリに保存するときに余分なスペースを削除する
 setopt hist_reduce_blanks
-
-# 高機能なワイルドカード展開を使用する
 setopt extended_glob
+setopt correct
+setopt list_packed
+setopt complete_aliases
 
 # コマンドの途中でctrl-pでそのコマンドから始まる履歴検索
 autoload history-search-end
@@ -176,17 +70,6 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^p" history-beginning-search-backward-end
 bindkey "^n" history-beginning-search-forward-end
-
-# コマンド訂正
-setopt correct
-
-# 補間候補を詰めて表示
-setopt list_packed
-
-# aliasに登録されているコマンドの元のコマンドのオプションまで補間？
-setopt complete_aliases
-
-########################################
 
 # https://gist.github.com/yonchu/3935922
 # cdの後にlsを実行
@@ -247,64 +130,32 @@ bindkey '^R' history-incremental-pattern-search-backward
 ########################################
 # エイリアス
 
-# chrome起動
 alias chrome='open -n /Applications/Google\ Chrome.app'
-# safari起動
 alias safari='open -a Safari'
-# LINE起動
 alias line='open -a LINE'
-# メール起動
-alias mail='open -a Mail'
-# メモ帳起動
-alias memo='open -a Notes'
-# evernote起動
-alias ever='open -a Evernote'
-# 計算機起動
 alias calc='open -a Calculator'
-# システム環境設定起動
 alias sys="open -a 'System Preferences'"
-# slack起動
 alias slack='open -a Slack'
-# skype起動
 alias skype='open -a Skype'
-# Teams起動
-alias teams='open -a Microsoft\ Teams'
-# emacs起動
-alias em='emacs'
-# cetree起動
 alias sour='open -a Sourcetree'
-# mvに確認オプションの必須化
 alias mv='mv -i'
-# rmをゴミ箱を経由するコマンドに変更
-# alias rm='rmtrash'
-# cpに確認オプションの必須化
 alias cp='cp -i'
-# .zshrcを読み込む
 alias sz='source ~/.zshrc'
-# treeに文字化けしないように、カラフルに、ファイルタイプ表示
 alias tree='tree -NCF'
-# wri.peへのアクセス
-alias wri='open https://wri.pe/app'
-# サブディレクトリも作成可能
 alias mkdir='mkdir -p'
-# 人間が読みやすい数値表記に
 alias du='du -h'
 alias df='df -h'
-# sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
 alias grep='grep --color'
 alias dcom='docker-compose'
 alias dk='docker'
 alias gcl="git fetch --prune; git br --merged master | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d % ; git br --merged develop | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d % ;git sync ; git br -vv"
-# 上のディレクトリへの移動を楽に
 alias ...='../../'
 alias ....='../../../'
 alias .....='../../../../'
-# グローバルエイリアス
 alias -g L='| less'
 alias -g G='| grep'
 alias -g AL='; say finish'
-# alias -g AL='; tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel;tput bel'
 
 # Linux へのコピペ用
 # alias ls='ls --color=auto -F'
@@ -338,50 +189,20 @@ elif which putclip >/dev/null 2>&1 ; then
     alias -g C='| putclip'
 fi
 
-
-
-########################################
-# OS 別の設定
 case ${OSTYPE} in
     darwin*)
-        #Mac用の設定
-        # lsをカラフルに、ファイルタイプ表示
         alias ls='gls --color=auto -F'
-        # lsをカラフルに、ファイルタイプ表示、不可視ファイル、ディレクトリも表示
         alias la='gls --color=auto -Fa'
-        # lsをカラフルに、ファイルタイプ表示、単位を読みやすく、
         alias ll='gls --color=auto -Flh'
-        # lsをカラフルに、ファイルタイプ表示、単位を読みやすく、不可視ファイル、ディレクトリも表示
         alias lla='gls --color=auto -Falh'
         ;;
     linux*)
-        #Linux用の設定
-        # lsをカラフルに、ファイルタイプ表示
         alias ls='ls --color=auto -F'
-        # lsをカラフルに、ファイルタイプ表示、不可視ファイル、ディレクトリも表示
         alias la='ls --color=auto -Fa'
-        # lsをカラフルに、ファイルタイプ表示、単位を読みやすく、
         alias ll='ls --color=auto -Flh'
-        # lsをカラフルに、ファイルタイプ表示、単位を読みやすく、不可視ファイル、ディレクトリも表示
         alias lla='ls --color=auto -Falh'
         ;;
 esac
-
-# vim:set ft=zsh:
-
-########################################
-# 前島追加分
-
-# PATHの追加
-# path=(/usr/local/bin(N-/) $path)
-# おそらくdefaultのPATH
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin
-# 追加したPATH
-export PATH=/usr/local/bin:$PATH
-# nodebrew導入時（20170321）PATHを通す
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-# 遊び 自作コマンド用
-# export PATH=$PATH:$HOME/work/bin
 
 # treeコマンドなどのGNU系のコマンドの色づきを指定
 if [ -f ~/.dircolors ]; then
@@ -396,6 +217,10 @@ fi
 if [ -n "$LS_COLORS" ]; then
   zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 fi
+
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # export PYENV_ROOT="$HOME/.pyenv"
 # export PATH="$PYENV_ROOT/bin:$PATH"
@@ -482,3 +307,32 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # maven brew で入れ直した
 # export PATH="$HOME/work/settings/maven/apache-maven-3.6.3/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/maejimayuto/work/settings/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/maejimayuto/work/settings/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/maejimayuto/work/settings/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/maejimayuto/work/settings/google-cloud-sdk/completion.zsh.inc'; fi
+
+#jEnv
+# https://qiita.com/uhooi/items/9a6747084bcfd4df07a6
+export JENV_ROOT="$HOME/.jenv"
+if [ -d "${JENV_ROOT}" ]; then
+  export PATH="$JENV_ROOT/bin:$PATH"
+  eval "$(jenv init -)"
+fi
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of Zinit's installer chunk
+
+# zinit light denysdovhan/spaceship-prompt
