@@ -26,6 +26,7 @@ echo "linked dotfiles complete!"
 # ln -snfv ~/work/settings/dotfiles/.gitignore_global /Users/maejimayuto/.gitignore_global
 # ln -snfv ~/work/settings/dotfiles/.tmux.conf /Users/maejimayuto/.tmux.conf
 # ln -snfv ~/work/settings/dotfiles/.zshrc /Users/maejimayuto/.zshrc
+# ln -snfv ~/work/settings/dotfiles/.zsh_history /Users/maejimayuto/.zsh_history
 # ln -snfv ~/work/settings/dotfiles/.Brewfile /Users/maejimayuto/Brewfile
 # ln -snfv ~/work/settings/dotfiles/.hyper.js /Users/maejimayuto/.hyper.js
 
@@ -38,5 +39,6 @@ echo "linked dotfiles complete!"
 # unlink ~/.gitignore_global
 # unlink ~/.tmux.conf
 # unlink ~/.zshrc
+# unlink ~/.zsh_history
 # unlink ~/Brewfile
 # unlink ~/.hyper.js
