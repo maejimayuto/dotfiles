@@ -53,17 +53,13 @@
   s   = status --short --branch
   st  = status
   ss  = stash
-[credential]
-  helper = cache
-[url "github:"]
-  InsteadOf = https://github.com/
-  InsteadOf = git@github.com:
 [color]
   ui = auto
 [diff]
   compactionHeuristic = true
   renames = true
-
+[pull]
+	rebase = false
 # For linux
 # [user]
 #   name  = maejimayuto
@@ -98,11 +94,6 @@
 #   s   = status --short --branch
 #   st  = status
 #   ss  = stash
-# [credential]
-#   helper = cache
-# [url "github:"]
-#   InsteadOf = https://github.com/
-#   InsteadOf = git@github.com:
 # [color]
 #   ui = auto
 # [diff]

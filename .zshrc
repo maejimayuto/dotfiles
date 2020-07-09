@@ -9,9 +9,6 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 
-autoload -U promptinit; promptinit
-prompt pure
-
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style
 select-word-style default
@@ -218,109 +215,7 @@ if [ -n "$LS_COLORS" ]; then
   zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 fi
 
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin
-export PATH=/usr/local/bin:$PATH
-export PATH=$HOME/.nodebrew/current/bin:$PATH
 
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-# export SDKMAN_DIR="/Users/maejimayuto-Mac/.sdkman"
-# [[ -s "/Users/maejimayuto-Mac/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/maejimayuto-Mac/.sdkman/bin/sdkman-init.sh"
-
-# Setting for rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# Setting for golang
-export GOROOT=/usr/local/opt/go/libexec
-export GOPATH=$HOME/.go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-
-# Setting for hyperledger-fabric
-export PATH=~/work/projects/archi_team/fabric-samples/bin:$PATH
-
-# Java
-# export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.8"`
-# PATH=${JAVA_HOME}/bin:${PATH}
-# https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/macos-install.html
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
-
-# Git
-export PATH="/usr/local/Cellar/git/2.5.0/bin:$PATH"
-# $ git diff
-# diff-highlight | less: diff-highlight: command not found
-# で怒られるので下記を実行する
-# sudo ln -s /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin/diff-highlight
-
-# Laravel
-export PATH="$HOME/.composer/vendor/bin:$PATH"
-
-# MySQL
-# export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-export PATH="/usr/local/mysql/bin:$PATH"
-
-# Androis Studio
-export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
-export ANDROID_HOME=$HOME/Library/Android/sdk
-# avdmanager, sdkmanager
-export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
-# adb, logcat
-export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
-# emulator
-export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
-export PATH=$PATH:$ANDROID_SDK_ROOT/tools
-
-export EDITOR="vim"
-
-# pyenv
-export PYENV_ROOT="${HOME}/.pyenv"
-export PATH="${PYENV_ROOT}/bin:$PATH"
-eval "$(pyenv init -)"
-
-# postgres
-export PGDATA='/usr/local/var/postgres'
-
-# nodenv
-export PATH="$HOME/.nodenv/bin:$PATH"
-export PATH="$HOME/.nodenv/shims:$PATH"
-
-# npm
-export PATH=$PATH:`npm bin -g`
-
-# gcloud
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
-
-# flutter
-export PATH="$PATH:$HOME/work/settings/flutter/bin"
-
-# pip https://qiita.com/tom-u/items/134e2b8d4e11feea8e12
-export PATH="$HOME/Library/Python/2.7/bin:$PATH"
-
-# ntfy https://qiita.com/HikoMSP/items/8977c12e44dba78f4a39
-# eval "$(ntfy shell-integration)"
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-# maven brew で入れ直した
-# export PATH="$HOME/work/settings/maven/apache-maven-3.6.3/bin:$PATH"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/maejimayuto/work/settings/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/maejimayuto/work/settings/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/maejimayuto/work/settings/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/maejimayuto/work/settings/google-cloud-sdk/completion.zsh.inc'; fi
-
-#jEnv
-# https://qiita.com/uhooi/items/9a6747084bcfd4df07a6
-export JENV_ROOT="$HOME/.jenv"
-if [ -d "${JENV_ROOT}" ]; then
-  export PATH="$JENV_ROOT/bin:$PATH"
-  eval "$(jenv init -)"
-fi
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
@@ -333,6 +228,16 @@ fi
 source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
-### End of Zinit's installer chunk
 
-# zinit light denysdovhan/spaceship-prompt
+# 右に時刻を表示
+RPROMPT="%*"
+zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+zinit light sindresorhus/pure
+PURE_GIT_DELAY_DIRTY_CHECK=10
+zstyle :prompt:pure:git:stash show yes
+
+
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+export PATH=$HOME/.nodebrew/current/bin:$PATH
