@@ -236,7 +236,6 @@ zinit light sindresorhus/pure
 PURE_GIT_DELAY_DIRTY_CHECK=10
 zstyle :prompt:pure:git:stash show yes
 
-
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
