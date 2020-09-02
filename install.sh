@@ -28,7 +28,8 @@ echo "linked dotfiles complete!"
 # ln -snfv ~/work/settings/dotfiles/.zshrc /Users/maejimayuto/.zshrc
 # ln -snfv ~/work/settings/dotfiles/.zsh_history /Users/maejimayuto/.zsh_history
 # ln -snfv ~/work/settings/dotfiles/.Brewfile /Users/maejimayuto/Brewfile
-# ln -snfv ~/work/settings/dotfiles/.hyper.js /Users/maejimayuto/.hyper.js
+# ln -snfv ~/work/settings/dotfiles/.Brewfile /Users/maejimayuto/Brewfile
+# ln -snfv ~/work/settings/dotfiles/ssh_config /Users/maejimayuto/.ssh/config
 
 #######################################
 # シンボリックリンクの削除
@@ -41,4 +42,5 @@ echo "linked dotfiles complete!"
 # unlink ~/.zshrc
 # unlink ~/.zsh_history
 # unlink ~/Brewfile
-# unlink ~/.hyper.js
+# unlink ~/Brewfile
+# unlink ~/.ssh/config
