@@ -28,7 +28,6 @@ echo "linked dotfiles complete!"
 # ln -snfv ~/work/settings/dotfiles/.zshrc /Users/maejimayuto/.zshrc
 # ln -snfv ~/work/settings/dotfiles/.zsh_history /Users/maejimayuto/.zsh_history
 # ln -snfv ~/work/settings/dotfiles/.Brewfile /Users/maejimayuto/Brewfile
-# ln -snfv ~/work/settings/dotfiles/.Brewfile /Users/maejimayuto/Brewfile
 # ln -snfv ~/work/settings/dotfiles/ssh_config /Users/maejimayuto/.ssh/config
 
 #######################################
@@ -41,6 +40,5 @@ echo "linked dotfiles complete!"
 # unlink ~/.tmux.conf
 # unlink ~/.zshrc
 # unlink ~/.zsh_history
-# unlink ~/Brewfile
 # unlink ~/Brewfile
 # unlink ~/.ssh/config
