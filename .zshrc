@@ -238,5 +238,3 @@ zstyle :prompt:pure:git:stash show yes
 
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
-
-export PATH=$HOME/.nodebrew/current/bin:$PATH
