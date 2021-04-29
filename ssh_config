@@ -2,15 +2,20 @@ Host *
     UseKeychain yes
     AddKeysToAgent yes
 
-Host github
+Host github github.com
     HostName github.com
-    IdentityFile ~/.ssh/id_rsa
+    # IdentityFile ~/.ssh/id_rsa
+    IdentityFile ~/.ssh/id_rsa_prum
     TCPKeepAlive yes
     IdentitiesOnly yes
     User git
 
-host gitlab
+Host gitlab
     user git
     hostname gitlab.com
     identityfile ~/.ssh/id_rsa.pub
     PreferredAuthentications publickey
+
+Host dev-skt
+    user maejimayuto
+    HostName 34.84.6.13

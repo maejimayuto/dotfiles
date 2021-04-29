@@ -146,7 +146,7 @@ alias sudo='sudo '
 alias grep='grep --color'
 alias dcom='docker-compose'
 alias dk='docker'
-alias gcl="git fetch --prune; git br --merged master | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d % ; git br --merged develop | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d % ;git sync ; git br -vv"
+alias gcl="git fetch --prune; git br --merged master | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d % ; git br --merged main | grep -vE '^\*|main$|develop$' | xargs -I % git branch -d % ; git br --merged develop | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d % ;git sync ; git br -vv"
 alias ...='../../'
 alias ....='../../../'
 alias .....='../../../../'
@@ -165,10 +165,8 @@ alias -g AL='; say finish'
 # alias .....='cd ../../../../'
 # alias dcom='docker-compose'
 # alias dk='docker'
+# alias gcl="git fetch --prune; git br --merged master | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d % ; git br --merged main | grep -vE '^\*|main$|develop$' | xargs -I % git branch -d % ; git br --merged develop | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d % " git br -vv"
 # eval `ssh-agent`
-# export LANGUAGE=en_US.UTF-8
-# export LANG=en_US.UTF-8
-# export LC_ALL=en_US.UTF-8
 
 # GitHub command https://github.com/github/hub
 function git(){hub "$@"} # zsh
@@ -238,3 +236,11 @@ zstyle :prompt:pure:git:stash show yes
 
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
+
+eval "$(anyenv init -)"
+
+# flutter
+export PATH="$PATH:$HOME/work/settings/flutter/flutter/bin"
+
+# Google Cloud API
+export GOOGLE_APPLICATION_CREDENTIALS="/Users/maejimayuto/work/sk-t/secrets/sktblog-GOOGLE_APPLICATION_CREDENTIALS.json"

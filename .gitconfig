@@ -1,6 +1,6 @@
 [user]
-  name  = maejimayuto
-  email = maejimayuto@gmail.com
+	name = maejimayuto
+	email = maejimayuto@gmail.com
 [core]
   attributesfile = /Users/yuto.maejima/.gitattributes_global
 	excludesfile = /Users/maejimayuto/.gitignore_global
@@ -25,7 +25,13 @@
   # $ git diff
   # diff-highlight | less: diff-highlight: command not found
   # で怒られるので下記を実行する
+  # Mac
   # sudo ln -s /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin/diff-highlight
+  # Debian
+  # https://qiita.com/mh_mobiler/items/c02cdb8eaca1b263b45c
+  # cd /usr/share/doc/git/contrib/diff-highlight
+  # sudo make
+  # sudo ln -s /usr/share/doc/git/contrib/diff-highlight/diff-highlight /usr/local/bin/diff-highlight
 [interactive]
   diffFilter = diff-highlight
 [alias]
@@ -37,7 +43,7 @@
   brv = branch -vv
   co  = checkout
   cod = !git checkout develop && git pull
-  com = !git checkout master && git pull
+  # com = !git checkout master && git pull
   cl  = clean
   cm  = commit
   d   = diff
@@ -48,11 +54,15 @@
   lop = log -p --oneline --graph --decorate --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
   logp= log -p
   mgd = !git fetch && git merge origin/develop
-  mgm = !git fetch && git merge origin/master
+  # mgm = !git fetch && git merge origin/master
+  rs = restore
   rmv = remote -v
   s   = status --short --branch
   st  = status
   ss  = stash
+  sw  = switch
+  swd = !git switch develop && git pull
+  # swm = !git switch master && git pull
 [color]
   ui = auto
 [diff]
@@ -80,9 +90,11 @@
 #   ai  = add -i
 #   br  = branch
 #   brv = branch -vv
-#   co  = checkout
 #   cl  = clean
 #   cm  = commit
+#   co  = checkout
+#   cod = !git checkout develop && git pull
+#   com = !git checkout master && git pull
 #   d   = diff
 #   ds  = diff --staged
 #   dif = diff --word-diff --ignore-space-change --ignore-blank-lines
@@ -90,10 +102,14 @@
 #   lo  = log --oneline --graph --decorate --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 #   lop = log -p --oneline --graph --decorate --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 #   logp= log -p
+#   rs = restore
 #   rmv = remote -v
 #   s   = status --short --branch
 #   st  = status
 #   ss  = stash
+#   sw  = switch
+#   swd = !git switch develop && git pull
+#   swm = !git switch master && git pull
 # [color]
 #   ui = auto
 # [diff]
