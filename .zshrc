@@ -17,49 +17,42 @@ select-word-style default
 zstyle ':zle:*' word-chars " /=;@:{},|"
 zstyle ':zle:*' word-style unspecified
 
-fpath=(/usr/local/share/zsh-completions $fpath)
-
+if [ -e /usr/local/share/zsh-completions ]; then
+  fpath=(/usr/local/share/zsh-completions $fpath)
+fi
 autoload -Uz compinit
 compinit -u
 
-# 補間で小文字でも大文字にマッチさせる
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-# ../ の後は今いるディレクトリを補間しない
-zstyle ':completion:*' ignore-parents parent pwd ..
-
-# sudo の後ろでコマンド名を補間する
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'  # 補完候補で、大文字・小文字を区別しないで補完出来るようにするが、大文字を入力した場合は区別する
+zstyle ':completion:*' ignore-parents parent pwd ..  # ../ の後は今いるディレクトリを補間しない
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
-                   /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
-
-# ps コマンドのプロセス名補間
-zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
-
-# 補間候補一覧上で移動できるように
-zstyle ':completion:*:default' menu select=1
-
-# 補間候補にカレントディレクトリは含めない
-zstyle ':completion:*:cd:*' ignore-parents parent pwd
+                   /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin  # sudo の後ろでコマンド名を補間する
+zstyle ':completion:*:processes' command 'ps x -o pid,s,args'  # ps コマンドのプロセス名補間
+zstyle ':completion:*:default' menu select=1  # 補間候補一覧上で移動できるように
+zstyle ':completion:*:cd:*' ignore-parents parent pwd  # 補間候補にカレントディレクトリは含めない
 
 # 書式設定（何の？）
 zstyle ':completion:*:descriptions' format '%BCompleting%b %U%d%u'
 
-setopt print_eight_bit
+setopt auto_cd                 # cd がなくてもフォルダー名を指定すると移動できる
+setopt auto_pushd              # cd -[tab] で今までいた dir の候補が表示される
+setopt auto_param_keys         # カッコの対応などを自動的に補完する
+setopt correct                 # 入力コマンドが間違えていたときに近いコマンド名を提案
+setopt complete_aliases
+setopt extended_glob
+setopt hist_ignore_all_dups    # 同じコマンドをhistoryに残さない
+setopt hist_ignore_space       # historyに保存するときに余分なスペースを削除する
+setopt hist_reduce_blanks      # historyに保存するときに余分なスペースを削除する
+setopt hist_save_no_dups       # 重複するコマンドが保存されるとき、古い方を削除する
+setopt ignore_eof
+setopt inc_append_history      # 実行時に履歴をファイルにに追加していく
+setopt interactive_comments    # コマンドラインでも # 以降をコメントと見なす
+setopt print_eight_bit         # 日本語ファイル名を表示可能にする
+setopt list_packed             # 補完候補を詰めて表示
 setopt no_beep
 setopt no_flow_control
-setopt ignore_eof
-setopt interactive_comments
-setopt auto_cd
-setopt auto_pushd
 setopt pushd_ignore_dups
-setopt share_history
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
-setopt hist_reduce_blanks
-setopt extended_glob
-setopt correct
-setopt list_packed
-setopt complete_aliases
+setopt share_history           # 履歴を他のシェルとリアルタイム共有する
 
 # コマンドの途中でctrl-pでそのコマンドから始まる履歴検索
 autoload history-search-end
@@ -142,9 +135,13 @@ alias tree='tree -NCF'
 alias mkdir='mkdir -p'
 alias du='du -h'
 alias df='df -h'
+alias ls='gls --color=auto -F'
+alias la='gls --color=auto -Fa'
+alias ll='gls --color=auto -Flh'
+alias lla='gls --color=auto -Falh'
 alias sudo='sudo '
 alias grep='grep --color'
-alias dcom='docker-compose'
+alias dcom='docker compose'
 alias dk='docker'
 alias gcl="git fetch --prune; git br --merged master | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d % ; git br --merged main | grep -vE '^\*|main$|develop$' | xargs -I % git branch -d % ; git br --merged develop | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d % ;git sync ; git br -vv"
 alias ...='../../'
@@ -165,7 +162,7 @@ alias -g AL='; say finish'
 # alias .....='cd ../../../../'
 # alias dcom='docker-compose'
 # alias dk='docker'
-# alias gcl="git fetch --prune; git br --merged master | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d % ; git br --merged main | grep -vE '^\*|main$|develop$' | xargs -I % git branch -d % ; git br --merged develop | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d % " git br -vv"
+# alias gcl="git fetch --prune; git br --merged master | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d % ; git br --merged main | grep -vE '^\*|main$|develop$' | xargs -I % git branch -d % ; git br --merged develop | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d %; git br -vv"
 # eval `ssh-agent`
 
 # GitHub command https://github.com/github/hub
@@ -183,21 +180,6 @@ elif which putclip >/dev/null 2>&1 ; then
     # Cygwin
     alias -g C='| putclip'
 fi
-
-case ${OSTYPE} in
-    darwin*)
-        alias ls='gls --color=auto -F'
-        alias la='gls --color=auto -Fa'
-        alias ll='gls --color=auto -Flh'
-        alias lla='gls --color=auto -Falh'
-        ;;
-    linux*)
-        alias ls='ls --color=auto -F'
-        alias la='ls --color=auto -Fa'
-        alias ll='ls --color=auto -Flh'
-        alias lla='ls --color=auto -Falh'
-        ;;
-esac
 
 # treeコマンドなどのGNU系のコマンドの色づきを指定
 if [ -f ~/.dircolors ]; then
