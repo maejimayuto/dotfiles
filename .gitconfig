@@ -55,7 +55,7 @@
   logp= log -p
   mgd = !git fetch && git merge origin/develop
   # mgm = !git fetch && git merge origin/master
-  rs = restore
+  rs  = restore
   rmv = remote -v
   s   = status --short --branch
   st  = status
@@ -102,7 +102,7 @@
 #   lo  = log --oneline --graph --decorate --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 #   lop = log -p --oneline --graph --decorate --date="iso" --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 #   logp= log -p
-#   rs = restore
+#   rs  = restore
 #   rmv = remote -v
 #   s   = status --short --branch
 #   st  = status
