@@ -24,6 +24,7 @@ echo "linked dotfiles complete!"
 # ln -snfv ~/work/settings/dotfiles/.gitattributes_global ~/.gitattributes_global
 # ln -snfv ~/work/settings/dotfiles/.gitconfig ~/.gitconfig
 # ln -snfv ~/work/settings/dotfiles/.gitignore_global ~/.gitignore_global
+# ln -snfv ~/work/settings/dotfiles/.stCommitMsg ~/.stCommitMsg
 # ln -snfv ~/work/settings/dotfiles/.tmux.conf ~/.tmux.conf
 # ln -snfv ~/work/settings/dotfiles/.zprofile ~/.zprofile
 # ln -snfv ~/work/settings/dotfiles/.zshrc ~/.zshrc
