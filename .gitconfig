@@ -19,9 +19,9 @@
   process  = git-lfs filter-process
   required = true
 [pager]
-  log = diff-highlight | less
-  show = diff-highlight | less
-  diff = diff-highlight | less
+  log = /opt/homebrew/share/git-core/contrib/diff-highlight/diff-highlight | less
+  show = /opt/homebrew/share/git-core/contrib/diff-highlight/diff-highlight | less
+  diff = /opt/homebrew/share/git-core/contrib/diff-highlight/diff-highlight | less
   # $ git diff
   # diff-highlight | less: diff-highlight: command not found
   # で怒られるので下記を実行する
@@ -115,3 +115,7 @@
 # [diff]
 #   compactionHeuristic = true
 #   renames = true
+[init]
+	defaultBranch = main
+[commit]
+	template = /Users/maejimayuto/.stCommitMsg
