@@ -166,7 +166,7 @@ alias -g AL='; say finish'
 # eval `ssh-agent`
 
 # GitHub command https://github.com/github/hub
-function git(){hub "$@"} # zsh
+# function git(){hub "$@"} # zsh
 
 # C で標準出力をクリップボードにコピーする
 # mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
