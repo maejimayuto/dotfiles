@@ -30,16 +30,10 @@ echo "linked dotfiles complete!"
 # ln -snfv ~/work/settings/dotfiles/.tigrc ~/.tigrc
 # ln -snfv ~/work/settings/dotfiles/.Brewfile ~/Brewfile
 # ln -snfv ~/work/settings/dotfiles/ssh_config ~/.ssh/config
+# ln -snfv ~/work/settings/dotfiles/karabiner.json ~/.config/karabiner/karabiner.json
 
 #######################################
 # シンボリックリンクの削除
 #######################################
 
-# unlink ~/.gitattributes_global
 # unlink ~/.gitconfig
-# unlink ~/.gitignore_global
-# unlink ~/.tmux.conf
-# unlink ~/.zshrc
-# unlink ~/.zsh_history
-# unlink ~/Brewfile
-# unlink ~/.ssh/config
