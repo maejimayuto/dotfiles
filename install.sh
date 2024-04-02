@@ -21,14 +21,15 @@ echo "linked dotfiles complete!"
 # シンボリックリンクの作成
 #######################################
 
-# ln -snfv ~/work/settings/dotfiles/.gitattributes_global /Users/maejimayuto/.gitattributes_global
-# ln -snfv ~/work/settings/dotfiles/.gitconfig /Users/maejimayuto/.gitconfig
-# ln -snfv ~/work/settings/dotfiles/.gitignore_global /Users/maejimayuto/.gitignore_global
-# ln -snfv ~/work/settings/dotfiles/.tmux.conf /Users/maejimayuto/.tmux.conf
-# ln -snfv ~/work/settings/dotfiles/.zshrc /Users/maejimayuto/.zshrc
-# ln -snfv ~/work/settings/dotfiles/.zsh_history /Users/maejimayuto/.zsh_history
-# ln -snfv ~/work/settings/dotfiles/.Brewfile /Users/maejimayuto/Brewfile
-# ln -snfv ~/work/settings/dotfiles/ssh_config /Users/maejimayuto/.ssh/config
+# ln -snfv ~/work/settings/dotfiles/.gitattributes_global ~/.gitattributes_global
+# ln -snfv ~/work/settings/dotfiles/.gitconfig ~/.gitconfig
+# ln -snfv ~/work/settings/dotfiles/.gitignore_global ~/.gitignore_global
+# ln -snfv ~/work/settings/dotfiles/.tmux.conf ~/.tmux.conf
+# ln -snfv ~/work/settings/dotfiles/.zprofile ~/.zprofile
+# ln -snfv ~/work/settings/dotfiles/.zshrc ~/.zshrc
+# ln -snfv ~/work/settings/dotfiles/.tigrc ~/.tigrc
+# ln -snfv ~/work/settings/dotfiles/.Brewfile ~/Brewfile
+# ln -snfv ~/work/settings/dotfiles/ssh_config ~/.ssh/config
 
 #######################################
 # シンボリックリンクの削除
