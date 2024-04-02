@@ -117,5 +117,3 @@
 #   renames = true
 [init]
 	defaultBranch = main
-[commit]
-	template = /Users/maejimayuto/.stCommitMsg
