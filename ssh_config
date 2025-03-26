@@ -4,8 +4,14 @@ Host *
 
 Host github github.com
     HostName github.com
-    # IdentityFile ~/.ssh/id_rsa
-    IdentityFile ~/.ssh/id_rsa_prum
+    IdentityFile ~/.ssh/id_rsa
+    TCPKeepAlive yes
+    IdentitiesOnly yes
+    User git
+
+Host github.sciseed github.com.sciseed
+    HostName github.com
+    IdentityFile ~/.ssh/id_rsa_sciseed
     TCPKeepAlive yes
     IdentitiesOnly yes
     User git
@@ -15,7 +21,3 @@ Host gitlab
     hostname gitlab.com
     identityfile ~/.ssh/id_rsa.pub
     PreferredAuthentications publickey
-
-Host dev-skt
-    user maejimayuto
-    HostName 34.84.6.13
