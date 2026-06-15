@@ -21,3 +21,29 @@ Host gitlab
     hostname gitlab.com
     identityfile ~/.ssh/id_rsa.pub
     PreferredAuthentications publickey
+
+# nishipedia production
+Host nishipedia-bastion-prod
+    HostName ec2-18-177-146-67.ap-northeast-1.compute.amazonaws.com
+    User ec2-user
+    IdentityFile ~/.ssh/nishipedia-database-stage-bastion-key.pem
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+
+Host nishipedia-internal
+    HostName 10.240.3.13
+    User ec2-user
+    IdentityFile ~/.ssh/nishipedia-database-stage-bastion-key.pem
+    ProxyJump nishipedia-bastion-prod
+    ServerAliveInterval 60
+    ServerAliveCountMax 3
+
+# SOCKS5 proxy tunnel (ssh -f -N nishipedia-socks で起動)
+Host nishipedia-socks
+    HostName 10.240.3.13
+    User ec2-user
+    IdentityFile ~/.ssh/nishipedia-database-stage-bastion-key.pem
+    ProxyJump nishipedia-bastion-prod
+    DynamicForward 1080
+    ServerAliveInterval 60
+    ServerAliveCountMax 3

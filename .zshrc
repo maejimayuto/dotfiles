@@ -1,4 +1,5 @@
 export LANG=ja_JP.UTF-8
+export LC_ALL=ja_JP.UTF-8
 
 autoload -Uz colors
 colors
@@ -21,7 +22,10 @@ if [ -e /usr/local/share/zsh-completions ]; then
   fpath=(/usr/local/share/zsh-completions $fpath)
 fi
 autoload -Uz compinit
-compinit -u
+if [[ -z $_COMPINIT_DONE ]]; then
+  compinit -u
+  typeset -g _COMPINIT_DONE=1
+fi
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'  # 補完候補で、大文字・小文字を区別しないで補完出来るようにするが、大文字を入力した場合は区別する
 zstyle ':completion:*' ignore-parents parent pwd ..  # ../ の後は今いるディレクトリを補間しない
@@ -63,42 +67,42 @@ bindkey "^n" history-beginning-search-forward-end
 
 # https://gist.github.com/yonchu/3935922
 # cdの後にlsを実行
-chpwd() {
-    ls_abbrev
-}
+# chpwd() {
+#     ls_abbrev
+# }
 
-ls_abbrev() {
-    # -a : Do not ignore entries starting with ..
-    # -C : Force multi-column output.
-    # -F : Append indicator (one of */=>@|) to entries.
-    local cmd_ls='ls'
-    local -a opt_ls
-    opt_ls=('--color=always' '-aFlh')
-    case "${OSTYPE}" in
-        freebsd*|darwin*)
-            if type gls > /dev/null 2>&1; then
-                cmd_ls='gls'
-            else
-                # -G : Enable colorized output.
-                opt_ls=('-CFG')
-            fi
-            ;;
-    esac
+# ls_abbrev() {
+#     # -a : Do not ignore entries starting with ..
+#     # -C : Force multi-column output.
+#     # -F : Append indicator (one of */=>@|) to entries.
+#     local cmd_ls='ls'
+#     local -a opt_ls
+#     opt_ls=('--color=always' '-aFlh')
+#     case "${OSTYPE}" in
+#         freebsd*|darwin*)
+#             if type gls > /dev/null 2>&1; then
+#                 cmd_ls='gls'
+#             else
+#                 # -G : Enable colorized output.
+#                 opt_ls=('-CFG')
+#             fi
+#             ;;
+#     esac
 
-    local ls_result
-    ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS command $cmd_ls ${opt_ls[@]} | sed $'/^\e\[[0-9;]*m$/d')
+#     local ls_result
+#     ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS command $cmd_ls ${opt_ls[@]} | sed $'/^\e\[[0-9;]*m$/d')
 
-    local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
+#     local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
 
-    if [ $ls_lines -gt 30 ]; then
-        echo "$ls_result" | head -n 15
-        echo '...'
-        echo "$ls_result" | tail -n 15
-        echo "$(command ls -1a | wc -l | tr -d ' ') files exist"
-    else
-        echo "$ls_result"
-    fi
-}
+#     if [ $ls_lines -gt 30 ]; then
+#         echo "$ls_result" | head -n 15
+#         echo '...'
+#         echo "$ls_result" | tail -n 15
+#         echo "$(command ls -1a | wc -l | tr -d ' ') files exist"
+#     else
+#         echo "$ls_result"
+#     fi
+# }
 
 
 # mkdirとcdを同時実行
@@ -143,7 +147,8 @@ alias sudo='sudo '
 alias grep='grep --color'
 alias dcom='docker compose'
 alias dk='docker'
-alias gcl="git fetch --prune; git br --merged master | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d % ; git br --merged main | grep -vE '^\*|main$|develop$' | xargs -I % git branch -d % ; git br --merged develop | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d % ;git sync ; git br -vv"
+# alias gcl="git fetch --prune; git br --merged master | grep -vE '^\*|master$|develop$|wg-main$' | xargs -I % git branch -d % ; git br --merged main | grep -vE '^\*|main$|develop$|wg-main$' | xargs -I % git branch -d % ; git br --merged develop | grep -vE '^\*|main$|develop$|wg-main$' | xargs -I % git branch -d % ; git br --merged wg-main | grep -vE '^\*|main$|develop$|wg-main$' | xargs -I % git branch -d % ;git sync ; git br -vv"
+alias gcl="git fetch --prune && git for-each-ref --format '%(refname:short) %(upstream:track)' refs/heads | awk '\$2 == \"[gone]\" {print \$1}' | xargs -I {} git branch -D {}; git br -vv"
 alias ...='../../'
 alias ....='../../../'
 alias .....='../../../../'
@@ -207,8 +212,11 @@ autoload -Uz _zinit
 
 # 右に時刻を表示
 RPROMPT="%*"
-zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
-zinit light sindresorhus/pure
+if [[ -z $_ZINIT_PURE_LOADED ]]; then
+  zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+  zinit light sindresorhus/pure
+  typeset -g _ZINIT_PURE_LOADED=1
+fi
 PURE_GIT_DELAY_DIRTY_CHECK=10
 zstyle :prompt:pure:git:stash show yes
 
@@ -222,14 +230,59 @@ zstyle :prompt:pure:git:stash show yes
 
 # Google Cloud API
 # export GOOGLE_APPLICATION_CREDENTIALS="/Users/maejimayuto/work/sk-t/secrets/sktblog-GOOGLE_APPLICATION_CREDENTIALS.json"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+if [[ -z $_NVM_LOADED ]]; then
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  typeset -g _NVM_LOADED=1
+fi
+
+# .nvmrc を自動読み込み（軽量版）
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local nvmrc_path
+  local dir="$PWD"
+  
+  # カレントディレクトリから上位に向かって .nvmrc を検索
+  while [[ "$dir" != "" ]]; do
+    if [[ -f "$dir/.nvmrc" ]]; then
+      nvmrc_path="$dir/.nvmrc"
+      break
+    fi
+    dir="${dir%/*}"
+  done
+
+  # 前回と同じ .nvmrc なら何もしない
+  if [[ "$nvmrc_path" == "$LAST_NVMRC_PATH" ]]; then
+    return
+  fi
+
+  export LAST_NVMRC_PATH="$nvmrc_path"
+
+  if [[ -n "$nvmrc_path" ]]; then
+    nvm use
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
 
 # https://github.com/pyenv/pyenv
 export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
+if [[ -z $_PYENV_LOADED ]]; then
+  [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init - zsh)"
+  typeset -g _PYENV_LOADED=1
+fi
+
+if [[ -z $_RBENV_LOADED ]]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+  typeset -g _RBENV_LOADED=1
+fi
+
+if [[ -z $_EXTRA_PATHS_LOADED ]]; then
+  export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+  export PATH="$PATH:/Users/maejimayuto/.local/bin"
+  export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+  typeset -g _EXTRA_PATHS_LOADED=1
+fi
