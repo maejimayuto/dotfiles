@@ -31,6 +31,7 @@ echo "linked dotfiles complete!"
 # ln -snfv ~/work/settings/dotfiles/.Brewfile ~/Brewfile
 # ln -snfv ~/work/settings/dotfiles/ssh_config ~/.ssh/config
 # ln -snfv ~/work/settings/dotfiles/karabiner.json ~/.config/karabiner/karabiner.json
+# ln -snfv ~/work/settings/dotfiles/wezterm.lua ~/.config/wezterm/wezterm.lua
 
 #######################################
 # シンボリックリンクの削除
